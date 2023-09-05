@@ -13,7 +13,9 @@ class MMU:
     running_disk_reads = 0
     running_disk_writes = 0
     running_page_faults = 0
+
     def read_memory(self, page_number):
+
         found = False
         if self.MMUlist:
            for i in range(len(self.MMUlist)): # check if page is in MMUlist
@@ -23,15 +25,16 @@ class MMU:
                     return 0
 
 
-
-
         if not found: # if page is not in MMUlist
             self.MMUlist.append([page_number , 0])
             self.running_disk_reads += 1 # increment disk reads
-            self.running_page_faults += 1 # increment page faults
+            #self.running_page_faults += 1 # increment page faults
             return 1
 
+
+
     def write_memory(self, page_number):
+
         found = False
         if self.MMUlist:
            for i in range(len(self.MMUlist)): # check if page is in MMUlist
@@ -43,10 +46,12 @@ class MMU:
 
 
 
+
+
         if not found: # if page is not in MMUlist
             self.MMUlist.append([page_number , 1])
             self.running_disk_reads += 1 # increment disk reads
-            self.running_page_faults += 1 # increment page faults
+
 
             return 1;
 
@@ -69,6 +74,9 @@ class MMU:
 
     def replace_victim(self, page_number):
 
+        if [page_number , 1] in self.MMUlist:
+            self.running_page_faults += 1
+
         for i in range(len(self.MMUlist)):
             if page_number == self.MMUlist[i][0]:
 
@@ -78,7 +86,9 @@ class MMU:
                     return 1 # return 1 if dirty bit is 1
 
         self.MMUlist.remove([page_number , 0])
+
         return 0
+
 
     def pass_frames(self, frames):
         if len(self.MMUlist) >= frames:
