@@ -25,15 +25,18 @@ class MMU:
                     return 0
 
 
+
         if not found: # if page is not in MMUlist
             self.MMUlist.append([page_number , 0])
             self.running_disk_reads += 1 # increment disk reads
-            #self.running_page_faults += 1 # increment page faults
+            self.running_page_faults += 1 # increment page faults
             return 1
 
 
 
     def write_memory(self, page_number):
+
+
 
         found = False
         if self.MMUlist:
@@ -51,7 +54,7 @@ class MMU:
         if not found: # if page is not in MMUlist
             self.MMUlist.append([page_number , 1])
             self.running_disk_reads += 1 # increment disk reads
-
+            self.running_page_faults += 1 # increment page faults
 
             return 1;
 
@@ -73,9 +76,6 @@ class MMU:
         return self.running_page_faults
 
     def replace_victim(self, page_number):
-
-        if [page_number , 1] in self.MMUlist:
-            self.running_page_faults += 1
 
         for i in range(len(self.MMUlist)):
             if page_number == self.MMUlist[i][0]:
