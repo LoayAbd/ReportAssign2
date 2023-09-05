@@ -84,3 +84,4 @@ class MMU:
         if len(self.MMUlist) >= frames:
             return 1
         return 0
+
