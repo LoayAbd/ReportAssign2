@@ -32,7 +32,7 @@ high_rand_y_data = df6.iloc[:,4].values
 
 # Create a Seaborn plot
 sns.set(style="whitegrid")
-plt.figure(figsize=(50, 10))
+plt.figure(figsize=(50, 20))
 sns.scatterplot(x=x_data, y=y_data, marker='o', s=100)
 sns.lineplot(x=x_data, y=y_data , marker='o')
 sns.scatterplot(x=lru_x_data, y=lru_y_data, marker='o', s=100)
