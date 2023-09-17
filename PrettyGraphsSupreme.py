@@ -3,11 +3,11 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 # Load the CSV file into a Pandas DataFrame
-file_path = 'gccLowEndClock.csv'
-second_file = 'gccLowEndLru.csv'# Replace with your CSV file path
-third_file = "gccLowEndRand.csv"
-high_end_one = "BzipResultsSearch.csv"
-high_end_two = "BzipResultsSearchLru.csv"
+file_path = 'BzipLowEndClock.csv'
+second_file = 'BzipLowEndLru.csv'# Replace with your CSV file path
+third_file = "BzipLowEndRand.csv"
+high_end_one = "BzipHighEndClock.csv"
+high_end_two = "BzipHighEndLru.csv"
 high_end_three = "BzipHighEndRand.csv"
 df = pd.read_csv(file_path)
 df2 = pd.read_csv(second_file)
@@ -32,7 +32,7 @@ high_rand_y_data = df6.iloc[:,4].values
 
 # Create a Seaborn plot
 sns.set(style="whitegrid")
-plt.figure(figsize=(300,10))
+plt.figure(figsize=(20,5))
 sns.scatterplot(x=x_data, y=y_data, marker='o', s=100)
 sns.lineplot(x=x_data, y=y_data , marker='o')
 sns.scatterplot(x=lru_x_data, y=lru_y_data, marker='o', s=100)
@@ -51,7 +51,7 @@ plt.title("Fault rate comparison to frame number Plot")
 plt.legend(labels = [None , 'Low end clock' , None , None, 'Low end lru',None,None,'Low end rand' , None , None , 'High end clock', None , None , 'High End Lru' , None , None , 'High end rand'])
 
 # save plot as svg file.
-plt.savefig("pretty_plot.svg", format="svg")
+plt.savefig("pretty_plot_Bzip.svg", format="svg")
 
 # Show the plot
 plt.show()
